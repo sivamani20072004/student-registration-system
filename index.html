@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Registration System</title>
+    <link rel="stylesheet"
+    href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="container">
+
+<h1>🎓 Student Registration System</h1>
+
+<form action="/add" method="POST">
+
+<input type="text"
+name="name"
+placeholder="Student Name"
+required>
+
+<input type="text"
+name="number"
+placeholder="Student Number"
+required>
+
+<input type="email"
+name="email"
+placeholder="Email Address"
+required>
+
+<input type="text"
+name="course"
+placeholder="Course"
+required>
+
+<select name="state" required>
+
+<option value="">
+Select State
+</option>
+
+{% for state in states %}
+<option value="{{state}}">
+{{state}}
+</option>
+{% endfor %}
+
+</select>
+
+<button type="submit">
+Add Student
+</button>
+
+</form>
+
+<table>
+
+<tr>
+<th>ID</th>
+<th>Name</th>
+<th>Number</th>
+<th>Email</th>
+<th>Course</th>
+<th>State</th>
+<th>Actions</th>
+</tr>
+
+{% for student in students %}
+
+<tr>
+
+<td>{{student[0]}}</td>
+<td>{{student[1]}}</td>
+<td>{{student[2]}}</td>
+<td>{{student[3]}}</td>
+<td>{{student[4]}}</td>
+<td>{{student[5]}}</td>
+
+<td class="action-cell">
+
+<a href="/edit/{{student[0]}}"
+class="edit-btn">
+Update
+</a>
+
+<a href="/delete/{{student[0]}}"
+class="delete-btn">
+Delete
+</a>
+
+</td>
+
+</tr>
+
+{% endfor %}
+
+</table>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>Edit Student</title>
+
+<link rel="stylesheet"
+href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>Update Student</h1>
+
+<form action="/update/{{student[0]}}"
+method="POST">
+
+<input type="text"
+name="name"
+value="{{student[1]}}"
+required>
+
+<input type="text"
+name="number"
+value="{{student[2]}}"
+required>
+
+<input type="email"
+name="email"
+value="{{student[3]}}"
+required>
+
+<input type="text"
+name="course"
+value="{{student[4]}}"
+required>
+
+<select name="state" required>
+
+{% for state in states %}
+
+<option value="{{state}}"
+{% if state == student[5] %}
+selected
+{% endif %}
+>
+
+{{state}}
+
+</option>
+
+{% endfor %}
+
+</select>
+
+<button type="submit">
+Update Student
+</button>
+
+</form>
+
+</div>
+
+</body>
+</html>
